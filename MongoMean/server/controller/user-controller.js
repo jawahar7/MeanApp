@@ -1,19 +1,15 @@
 var express = require('express');
-var users = require('../model/users')
-var app = express();
+var users = require('../model/users.js')
+var usercontroller = {};
 
-app.get('/api/users', function(req, res){
-	users.save({username: 'jawahar', password: 'jawahar123', email: 'jawahar7.ceg@gmail.com'}, function(err){
+usercontroller.findall = function(req, res) {
+	var user = new users({username: 'jawahar', password: 'jawahar123', email: 'jawahar7.ceg@gmail.com'});
+	user.save(function(err, data){
 		if(err)
-			console.log(err)
+			res.send(err);
 		else
-			console.log('Inserted');
-	})
-	res.send('hai');
-});
+			res.send(data);
+	});
+};
 
-app.post('/api/users', function(req, res){
-	
-});
-
-module.exports = app;
+module.exports = usercontroller;
