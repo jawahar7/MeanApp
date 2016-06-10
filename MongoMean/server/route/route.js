@@ -8,10 +8,19 @@ app.get('/', function(req, res){
 	res.sendFile(rootpath + '/client/view/index.html');
 });
 
+app.get('/login/login', function(req, res){
+	res.sendFile(rootpath + '/client/view/login/login.html');
+});
+
+app.get('/login/register', function(req, res){
+	res.sendFile(rootpath + '/client/view/login/register.html');
+});
+
 app.get('/blog/getblog', function(req, res){
 	res.sendFile(rootpath + '/client/view/blogs/blogs.html');
 });
 
 app.get('/api/users', usercontroller.findall);
+app.post('/api/users', usercontroller.save);
 
 module.exports = app;

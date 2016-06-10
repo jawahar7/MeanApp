@@ -1,0 +1,37 @@
+<div class="row">
+   <dir class="col-md-6 col-sm-offset-3">
+      <form class="form-horizontal" name="formregister" role="form">
+         <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Email:</label>
+            <div class="col-sm-10">
+               <input type="text" class="form-control" ng-model="registerobj.username" name="username" id="username" placeholder="Enter Username">
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-10">
+               <input type="text" class="form-control" ng-model="registerobj.email" name="email" id="email" placeholder="Enter Email">
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-10"> 
+               <input type="password" class="form-control" ng-model="registerobj.password" name="password" id="password" placeholder="Enter Password">
+            </div>
+         </div>
+         <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <div class="checkbox">
+                  <a href="#/Login">Login</a>
+               </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <button type="submit" ng-click="register(formregister)" class="btn btn-default">Register</button>
+            </div>
+         </div>
+      </form>
+   </dir>
+</div>
+   

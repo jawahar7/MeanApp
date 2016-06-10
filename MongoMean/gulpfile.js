@@ -16,7 +16,7 @@ gulp.task('cleanstyle', function() {
 });
 
 gulp.task('scripts', ['cleanscript'], function(){
-	return gulp.src(['client/controller/app.js', 'client/controller/blog-controller.js'])
+	return gulp.src(['client/controller/app.js', 'client/controller/blogservice.js', 'client/controller/login-controller.js', 'client/controller/blog-controller.js'])
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest('client/build/script'));
 });
