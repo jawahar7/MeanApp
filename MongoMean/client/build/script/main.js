@@ -21,7 +21,7 @@ angular.module('blogApp').config(['$routeProvider', function($routeProvider){
 angular.module('blogApp').factory('blogservice', ['$http', function($http){
 	var service = {};
 	service.userregister = function(obj){
-		return $http.post('', obj);
+		return $http.post('/api/users', obj);
 	}
 	return service;
 }]);
@@ -29,7 +29,7 @@ angular.module('blogApp').controller('loginCtrl', ['$scope', function($scope){
 
 }]);
 
-angular.module('blogApp').controller('registerCtrl', ['$scope', 'blogservice' function($scope, blogservice){
+angular.module('blogApp').controller('registerCtrl', ['$scope', 'blogservice', function($scope, blogservice){
 	$scope.registerobj = {};
 	$scope.register = function(formregister){
 		blogservice.userregister($scope.registerobj).then(function(data){

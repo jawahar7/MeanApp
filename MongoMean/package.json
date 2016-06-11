@@ -9,6 +9,7 @@
   "author": "jawahar",
   "license": "MIT",
   "devDependencies": {
+    "body-parser": "^1.15.1",
     "del": "^2.2.0",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
