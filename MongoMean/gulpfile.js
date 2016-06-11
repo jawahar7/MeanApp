@@ -1,5 +1,8 @@
 var gulp = require('gulp');
+var gulpUtil = require('gulp-util');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var cssmin = require('gulp-cssmin');
 var del = require('del');
 
 var path = {
@@ -18,12 +21,15 @@ gulp.task('cleanstyle', function() {
 gulp.task('scripts', ['cleanscript'], function(){
 	return gulp.src(['client/controller/app.js', 'client/controller/blogservice.js', 'client/controller/login-controller.js', 'client/controller/blog-controller.js'])
 		.pipe(concat('main.js'))
+		.pipe(uglify())
 		.pipe(gulp.dest('client/build/script'));
 });
 
 gulp.task('styles', ['cleanstyle'], function(){
 	return gulp.src('client/content/style.css')
 		.pipe(concat('main.css'))
+		.pipe(cssmin())
+		//.pipe(uglify().on('error', gulpUtil.log))
 		.pipe(gulp.dest('client/build/style'));
 });
 

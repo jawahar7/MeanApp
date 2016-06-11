@@ -9,11 +9,15 @@
   "author": "jawahar",
   "license": "MIT",
   "devDependencies": {
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.1",
     "del": "^2.2.0",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
     "mongoose": "^4.4.20"
   }
 }

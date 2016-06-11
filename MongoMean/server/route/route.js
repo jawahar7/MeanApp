@@ -22,5 +22,6 @@ app.get('/blog/getblog', function(req, res){
 
 app.get('/api/users', usercontroller.findall);
 app.post('/api/users', usercontroller.save);
+app.post('/api/login', usercontroller.login);
 
 module.exports = app;
