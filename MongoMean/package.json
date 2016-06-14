@@ -9,15 +9,19 @@
   "author": "jawahar",
   "license": "MIT",
   "devDependencies": {
-    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
     "del": "^2.2.0",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
-    "mongoose": "^4.4.20"
+    "mongoose": "^4.4.20",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   }
 }
