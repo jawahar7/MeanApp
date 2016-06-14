@@ -1,5 +1,5 @@
 var express = require('express');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var users = require('../model/users.js')
 var usercontroller = {};
 const saltRounds = 10;
@@ -14,18 +14,20 @@ usercontroller.findall = function(req, res) {
 };
 
 usercontroller.save = function(req, res) {		
-	bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-		if(err)
-			res.send(err);
-		else{
-			var user = new users({username: req.body.username, password: hash, email: req.body.email});			
-			user.save(function(err, data){
-				if(err)
-					res.send(err);
-				else
-					res.send('success');
-			});
-		}
+	bcrypt.genSalt(saltRounds, function(err, salt) {
+    	bcrypt.hash(req.body.password, salt, function(err, hash) {	
+			if(err)
+				res.send(err);
+			else{
+				var user = new users({username: req.body.username, password: hash, email: req.body.email});			
+				user.save(function(err, data){
+					if(err)
+						res.send(err);
+					else
+						res.send('success');
+				});
+			}
+		});
 	});
 };
 
