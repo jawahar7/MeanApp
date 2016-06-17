@@ -12,8 +12,8 @@ usercontroller.findall = function(req, res) {
 	});
 };
 
-usercontroller.save = function(req, res) {		
-	bcrypt.genSalt(10, function(err, salt) {
+usercontroller.save = function(req, res) {	
+	bcrypt.genSalt(saltRounds, function(err, salt) {
     	bcrypt.hash(req.body.password, salt, function(err, hash) {	
 			if(err)
 				res.send(err);
