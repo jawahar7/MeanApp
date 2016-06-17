@@ -1,4 +1,3 @@
-var express = require('express');
 var bcrypt = require('bcryptjs');
 var users = require('../model/users.js')
 var usercontroller = {};
@@ -15,8 +14,7 @@ usercontroller.findall = function(req, res) {
 
 usercontroller.save = function(req, res) {		
 	bcrypt.genSalt(10, function(err, salt) {
-    	bcrypt.hash(req.body.password, salt, function(err, hash) {
-	//bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+    	bcrypt.hash(req.body.password, salt, function(err, hash) {	
 			if(err)
 				res.send(err);
 			else{
@@ -49,6 +47,22 @@ usercontroller.login = function(req, res){
 				res.send('Invalid Credential');
 		}
 	});	
+};
+
+usercontroller.findone = function(username, password){	
+	bcrypt.genSalt(10, function(err, salt) {
+    	bcrypt.hash(password, salt, function(err, hash) {	
+    		console.log(hash)
+    		users.findOne({username: username, password: hash},function(err,result){
+    			console.log(result)
+    		})
+			return users.findOne({username: username, password: hash});	
+		});
+    });
+};
+
+usercontroller.findbyid = function(id) {
+	return users.findById(id);
 };
 
 module.exports = usercontroller;
