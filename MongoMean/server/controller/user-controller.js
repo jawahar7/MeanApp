@@ -50,12 +50,13 @@ usercontroller.login = function(req, res){
 };
 
 usercontroller.findone = function(username, password){	
-	bcrypt.genSalt(10, function(err, salt) {
-    	bcrypt.hash(password, salt, function(err, hash) {	
-    		console.log(hash)
-    		users.findOne({username: username, password: hash},function(err,result){
+	//bcrypt.genSalt(saltRounds, function(err, salt) {
+    //	bcrypt.hash(password, salt, function(err, hash) {	
+    users.find({username: username}, function(err, user){
+    	bcrypt.compare(req.body.password, user[0].password, function(err, result) {    		
+    		//users.findOne({username: username, password: hash},function(err,result){
     			console.log(result)
-    		})
+    		//})
 			return users.findOne({username: username, password: hash});	
 		});
     });
