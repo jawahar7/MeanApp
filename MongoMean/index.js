@@ -9,8 +9,8 @@ var app = express();
 //Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({secret:"this is the secret", resave: false, saveUninitialized: false}));
 app.use(cookieParser());
+app.use(session({secret:"this is the secret", resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/client/build'));

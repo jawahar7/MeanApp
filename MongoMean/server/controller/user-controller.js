@@ -30,13 +30,14 @@ usercontroller.save = function(req, res) {
 	});
 };
 
-usercontroller.login = function(req, res){		
-	users.find({username: req.body.username}, function(err, user){
+usercontroller.login = function(req, res){	
+	users.findOne({username: req.body.username}).select('+password').exec(function(err, user){
 		if(err)			
 			res.send("Error");		
 		else{
-			if(user.length > 0){				
-				bcrypt.compare(req.body.password, user[0].password, function(err, result) {
+			console.log(user)
+			if(user){				
+				bcrypt.compare(req.body.password, user.password, function(err, result) {
 					if(result)
 						res.send('success');
 					else
@@ -46,11 +47,10 @@ usercontroller.login = function(req, res){
 			else
 				res.send('Invalid Credential');
 		}
-	});	
+	});		
 };
 
-usercontroller.isauth = function(req, res){
-	console.log(req.isAuthenticated());
+usercontroller.isauth = function(req, res){	
 	res.send(req.isAuthenticated() ? req.user : '0');
 };
 

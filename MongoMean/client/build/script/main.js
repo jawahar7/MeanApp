@@ -17,26 +17,26 @@ angular.module('blogApp').config(['$routeProvider', function($routeProvider){
 		templateUrl: 'blog/getblog',
 		controller: 'blogCtrl',
 		resolve: {
-			//authservice: authservice
-			checkLoggedIn: checkLoggedIn
+			authservice: authservice
+			//checkLoggedIn: checkLoggedIn
 		}
 	});
 }]);
 
-function checkLoggedIn($q, $http, $location){
-	var deferred = $q.defer();
-	$http.get('/api/loggedin').success(function(user){
-		console.log(user);
-		if(user != '0'){
-			deferred.resolve();
-		}
-		else{
-			deferred.reject();
-			$location.url('/Login');			
-		}
-	});
-	return deferred.promise;
-}
+// function checkLoggedIn($q, $http, $location){
+// 	var deferred = $q.defer();
+// 	$http.get('/api/loggedin').success(function(user){
+// 		console.log(user);
+// 		if(user != '0'){
+// 			deferred.resolve();
+// 		}
+// 		else{
+// 			deferred.reject();
+// 			$location.url('/Login');			
+// 		}
+// 	});
+// 	return deferred.promise;
+// }
 angular.module('blogApp').factory('blogservice', ['$http', function($http){
 	var service = {};
 	service.userregister = function(obj){
