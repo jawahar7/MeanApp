@@ -4,19 +4,19 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var route = require('./server/route/route');
 var app = express();
 
 //Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({secret:"this is the secret"}));
+app.use(session({secret:"this is the secret", resave: false, saveUninitialized: false}));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/client/build'));
-app.use(route);
 
+require('./config/passport')(passport);
+require('./server/route/route')(app, passport);
 
 mongoose.connect('mongodb://localhost:27017/userblog', function(err){
 	if(err)

@@ -1,4 +1,4 @@
-angular.module('blogApp').controller('loginCtrl', ['$scope', 'blogservice', function($scope, blogservice){
+angular.module('blogApp').controller('loginCtrl', ['$scope', '$location', 'blogservice', function($scope, $location, blogservice){
 	$scope.loginobj = {};
 	$scope.regmessage = "";
 	$scope.failedmsg = "";
@@ -8,6 +8,10 @@ angular.module('blogApp').controller('loginCtrl', ['$scope', 'blogservice', func
 		blogservice.userlogin($scope.loginobj).then(function(data){
 			if(data.data == "success"){
 				$scope.loginobj = {};
+				// blogservice.islogin().then(function(user){
+				// 	console.log(user);
+				// })
+				$location.url('/Blog');
 			}
 			else{
 				$scope.loginobj.password = "";

@@ -1,5 +1,5 @@
 var bcrypt = require('bcryptjs');
-var users = require('../model/users.js')
+var users = require('../model/users.js');
 var usercontroller = {};
 const saltRounds = 10;
 
@@ -49,21 +49,9 @@ usercontroller.login = function(req, res){
 	});	
 };
 
-usercontroller.findone = function(username, password){	
-	//bcrypt.genSalt(saltRounds, function(err, salt) {
-    //	bcrypt.hash(password, salt, function(err, hash) {	
-    users.find({username: username}, function(err, user){
-    	bcrypt.compare(req.body.password, user[0].password, function(err, result) {    		
-    		//users.findOne({username: username, password: hash},function(err,result){
-    			console.log(result)
-    		//})
-			return users.findOne({username: username, password: hash});	
-		});
-    });
-};
-
-usercontroller.findbyid = function(id) {
-	return users.findById(id);
+usercontroller.isauth = function(req, res){
+	console.log(req.isAuthenticated());
+	res.send(req.isAuthenticated() ? req.user : '0');
 };
 
 module.exports = usercontroller;
