@@ -1,1 +1,1 @@
-body{padding-top:60px}.pointer{cursor:pointer}
+.editable-buttons,.editable-input{display:inline-block}body{padding-top:60px}.pointer{cursor:pointer}.editable-input.editable-has-buttons{width:auto}.editable-buttons{vertical-align:top}.editable-buttons button{margin-left:5px}

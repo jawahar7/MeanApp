@@ -28,8 +28,7 @@ gulp.task('scripts', ['cleanscript'], function(){
 gulp.task('styles', ['cleanstyle'], function(){
 	return gulp.src('client/content/style.css')
 		.pipe(concat('main.css'))
-		.pipe(cssmin())
-		//.pipe(uglify().on('error', gulpUtil.log))
+		.pipe(cssmin())		
 		.pipe(gulp.dest('client/build/style'));
 });
 

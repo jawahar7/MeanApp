@@ -7,10 +7,7 @@ angular.module('blogApp').controller('loginCtrl', ['$scope', '$location', 'blogs
 		$scope.failedmsg = "";
 		blogservice.userlogin($scope.loginobj).then(function(data){
 			if(data.data == "success"){
-				$scope.loginobj = {};
-				// blogservice.islogin().then(function(user){
-				// 	console.log(user);
-				// })
+				$scope.loginobj = {};				
 				$location.url('/Blog');
 			}
 			else{
@@ -18,6 +15,11 @@ angular.module('blogApp').controller('loginCtrl', ['$scope', '$location', 'blogs
 				$scope.regmessage = "failed";
 				$scope.failedmsg = data.data
 			}
+		},function(err){
+			console.log(err);
+			$scope.loginobj = {};
+			$scope.regmessage = "failed";
+			$scope.failedmsg = err.statusText
 		});
 	}
 }]);
