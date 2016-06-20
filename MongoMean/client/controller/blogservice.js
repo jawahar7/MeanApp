@@ -1,3 +1,4 @@
+//Factories
 angular.module('blogApp').factory('blogservice', ['$http', function($http){
 	var service = {};
 	service.userregister = function(obj){
@@ -8,3 +9,5 @@ angular.module('blogApp').factory('blogservice', ['$http', function($http){
 	};	
 	return service;
 }]);
+
+//Services
