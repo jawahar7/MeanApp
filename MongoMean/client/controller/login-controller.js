@@ -1,4 +1,5 @@
-angular.module('blogApp').controller('loginCtrl', ['$scope', '$location', 'blogservice', function($scope, $location, blogservice){
+angular.module('blogApp').controller('loginCtrl', ['$rootScope', '$scope', '$location', 'blogservice', function($rootScope, $scope, $location, blogservice){
+	$rootScope.showwelcome = false;
 	$scope.loginobj = {};
 	$scope.regmessage = "";
 	$scope.failedmsg = "";
@@ -24,7 +25,8 @@ angular.module('blogApp').controller('loginCtrl', ['$scope', '$location', 'blogs
 	}
 }]);
 
-angular.module('blogApp').controller('registerCtrl', ['$scope', 'blogservice', function($scope, blogservice){
+angular.module('blogApp').controller('registerCtrl', ['$rootScope', '$scope', 'blogservice', function($rootScope, $scope, blogservice){
+	$rootScope.showwelcome = false;
 	$scope.registerobj = {};
 	$scope.regmessage = "";
 	$scope.register = function(formregister){

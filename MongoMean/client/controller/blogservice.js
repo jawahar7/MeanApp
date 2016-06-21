@@ -7,6 +7,9 @@ angular.module('blogApp').factory('blogservice', ['$http', function($http){
 	service.userlogin = function(obj){
 		return $http.post('/api/login', obj);
 	};	
+    service.saveblog = function(obj){
+        return $http.post('/api/blogs', obj);
+    };
 	return service;
 }]);
 

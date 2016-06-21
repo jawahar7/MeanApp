@@ -17,7 +17,7 @@ usercontroller.save = function(req, res) {
     	bcrypt.hash(req.body.password, salt, function(err, hash) {	
 			if(err)
 				res.send(err);
-			else{
+			else{				
 				var user = new users({username: req.body.username, password: hash, email: req.body.email});			
 				user.save(function(err, data){
 					if(err)
@@ -30,7 +30,7 @@ usercontroller.save = function(req, res) {
 	});
 };
 
-usercontroller.login = function(req, res){	
+usercontroller.login = function(req, res){		
 	users.findOne({username: req.body.username}).select('+password').exec(function(err, user){
 		if(err)			
 			res.send("Error");		
@@ -51,6 +51,11 @@ usercontroller.login = function(req, res){
 
 usercontroller.isauth = function(req, res){	
 	res.send(req.isAuthenticated() ? req.user : '0');
+};
+
+usercontroller.logout = function(req, res){	
+	req.session.destroy();
+	res.send('logout');
 };
 
 module.exports = usercontroller;

@@ -20,6 +20,11 @@ angular.module('blogApp').config(['$routeProvider', function($routeProvider){
 			checkLoggedIn: checkLoggedIn
 		}		
 	});
+	$routeProvider.when('/Logout', {		
+		resolve: {
+			Logout: Logout
+		}		
+	});
 }]);
 
 var checkLoggedIn = ['$q', '$http', '$location', 'welcomeservice', function ($q, $http, $location, welcomeservice) {
@@ -34,6 +39,16 @@ var checkLoggedIn = ['$q', '$http', '$location', 'welcomeservice', function ($q,
 			deferred.reject();
 			$location.url('/Login');
 		}
+	});
+	return deferred.promise;
+}]
+
+var Logout = ['$q', '$http', '$location', 'welcomeservice', function ($q, $http, $location, welcomeservice) {
+    var deferred = $q.defer();
+	$http.get('/api/logout').success(function(result){		
+		welcomeservice.clear();
+		deferred.reject();
+		$location.url('/Login');		
 	});
 	return deferred.promise;
 }]

@@ -30,7 +30,7 @@ gulp.task('scripts', ['cleanscript'], function(){
 });
 
 gulp.task('styles', ['cleanstyle'], function(){
-	return gulp.src('client/content/loading-bar.css', 'client/content/style.css')
+	return gulp.src(['client/content/loading-bar.css', 'client/content/style.css'])
 		.pipe(concat('main.css'))
 		.pipe(cssmin())		
 		.pipe(gulp.dest('client/build/style'))
