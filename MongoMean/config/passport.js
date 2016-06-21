@@ -8,11 +8,8 @@ module.exports = function(passport){
 				return(err)
 			if(!user)
 				return done(null, false);
-			else{
-				//delete user["password"];
-				//console.log(user);
-				return done(null, user);
-			}
+			else				
+				return done(null, user);			
 		});
 	}));
 	

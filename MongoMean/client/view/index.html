@@ -22,10 +22,13 @@
                <a class="navbar-brand" href="#">MeanStack</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav pull-right" ng-if="showwelcome" style="color:#fff;">
-                  <li>
-                     Welcome {{username}}
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right" ng-if="showwelcome" style="color:#fff;">
+                  <li class="dropdown">
+                     <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome {{username}} <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a class="cursor-pointer">Logout</a></li>
+                     </ul>
                   </li>                  
                </ul>               
             </div>
@@ -41,6 +44,7 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-route.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-cookies.js"></script>
+      <script type="text/javascript" src="js/loading-bar.js"></script>
       <script type="text/javascript" src="script/main.js"></script>
    </body>
 </html>

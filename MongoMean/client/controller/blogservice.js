@@ -11,3 +11,16 @@ angular.module('blogApp').factory('blogservice', ['$http', function($http){
 }]);
 
 //Services
+angular.module('blogApp').service('welcomeservice',['$cookies', function($cookies){
+	return {
+        setObject: function (value) {            
+            $cookies.putObject("autharray", value);
+        },
+        getObject: function () {           	   
+            return $cookies.getObject("autharray");
+        },
+        clear: function () {
+            $cookies.remove("autharray");
+        }
+    }
+}]);

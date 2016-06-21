@@ -10,7 +10,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({secret:"this is the secret", resave: true, saveUninitialized: true}));
+app.use(session({secret:"this is the secret", resave: true, saveUninitialized: true, cookie: { maxAge: 60000 }}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/client/build'));

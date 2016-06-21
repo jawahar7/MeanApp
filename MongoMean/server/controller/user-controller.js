@@ -34,8 +34,7 @@ usercontroller.login = function(req, res){
 	users.findOne({username: req.body.username}).select('+password').exec(function(err, user){
 		if(err)			
 			res.send("Error");		
-		else{
-			console.log(user)
+		else{			
 			if(user){				
 				bcrypt.compare(req.body.password, user.password, function(err, result) {
 					if(result)
