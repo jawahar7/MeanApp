@@ -1,14 +1,14 @@
 var blogs = require('../model/blogs.js');
 var blogcontroller = {};
 
-blogcontroller.getblog = function(req, res){
-	console.log(req.params.id);
+blogcontroller.getblog = function(req, res){	
 	blogs.find({createdby:{_id: req.params.id}}).sort({dtstamp: -1}).populate('createdby', 'username').exec(function(err, result){
-		if(err)
+		if(err){
 			console.log(err);
-		else
-			console.log(result);
-		res.send(result)
+			res.send(err)
+		}
+		else			
+			res.send(result)
 	});
 };
 
