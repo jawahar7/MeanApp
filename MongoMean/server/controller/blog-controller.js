@@ -1,8 +1,9 @@
 var blogs = require('../model/blogs.js');
 var blogcontroller = {};
 
-blogcontroller.getblog = function(req, res){	
-	blogs.find({createdby:{_id: req.params.id}}).sort({dtstamp: -1}).populate('createdby', 'username').exec(function(err, result){
+blogcontroller.getotherblog = function(req, res){
+	console.log(req.params.id)
+	blogs.find({createdby: { $ne: req.params.id}}).sort({dtstamp: -1}).populate('createdby', 'username').exec(function(err, result){
 		if(err){
 			console.log(err);
 			res.send(err)
@@ -12,8 +13,18 @@ blogcontroller.getblog = function(req, res){
 	});
 };
 
-blogcontroller.addblog = function(req, res){
-	console.log(req.body);
+blogcontroller.getblogbyuser = function(req, res){	
+	blogs.find({createdby: req.params.id}).sort({dtstamp: -1}).populate('createdby', 'username').exec(function(err, result){
+		if(err){
+			console.log(err);
+			res.send(err)
+		}
+		else			
+			res.send(result)
+	});
+};
+
+blogcontroller.addblog = function(req, res){	
 	var blog = new blogs(req.body);
 	blog.save(function(err, result){
 		if(err)
@@ -21,6 +32,17 @@ blogcontroller.addblog = function(req, res){
 		else
 			res.send(result);
 	});	
+};
+
+blogcontroller.getblogbyid = function(req, res){
+	blogs.findOne({_id: req.params.id}).populate('createdby', 'username').exec(function(err, result){
+		if(err){
+			console.log(err);
+			res.send(err)
+		}
+		else			
+			res.send(result)
+	});
 };
 
 module.exports = blogcontroller;

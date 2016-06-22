@@ -1,6 +1,7 @@
 var path = require('path');
 var usercontroller = require('../controller/user-controller');
 var blogcontroller = require('../controller/blog-controller');
+var commentcontroller = require('../controller/comment-controller');
 var rootpath = path.join(__dirname, '../../');
 
 module.exports = function(app, passport){
@@ -24,6 +25,10 @@ module.exports = function(app, passport){
 		res.sendFile(rootpath + '/client/view/blogs/blogs.html');
 	});
 
+	app.get('/blogs/getblog', function(req, res){
+		res.sendFile(rootpath + '/client/view/blogs/getblog.html');
+	});
+
 	//Login & Auth
 	app.get('/api/users', usercontroller.findall);
 	app.post('/api/users', usercontroller.save);
@@ -32,6 +37,11 @@ module.exports = function(app, passport){
 	app.get('/api/logout', usercontroller.logout);
 
 	//Blogs
-	app.get('/api/blogs/:id', blogcontroller.getblog);
-	app.post('/api/blogs', blogcontroller.addblog);
+	app.get('/api/blogs/other/:id', blogcontroller.getotherblog);
+	app.get('/api/blogs/user/:id', blogcontroller.getblogbyuser);
+	app.get('/api/blogs/blog/:id', blogcontroller.getblogbyid);
+	app.post('/api/blogs', blogcontroller.addblog);	
+
+	//Comments
+	app.post('/api/comments', commentcontroller.addcomment)
 };

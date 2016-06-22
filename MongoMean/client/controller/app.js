@@ -27,6 +27,13 @@ angular.module('blogApp').config(['$routeProvider', function($routeProvider){
 			checkLoggedIn: checkLoggedIn
 		}		
 	});
+	$routeProvider.when('/Blog/:blogid', {
+		templateUrl: 'blogs/getblog',
+		controller: 'getblogCtrl',
+		resolve: {
+			checkLoggedIn: checkLoggedIn
+		}		
+	});
 	$routeProvider.when('/Logout', {		
 		resolve: {
 			Logout: Logout

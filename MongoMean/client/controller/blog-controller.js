@@ -6,7 +6,7 @@ angular.module('blogApp').controller('blogCtrl',['$rootScope', '$scope', 'blogse
 	$rootScope.username = $scope.logindata.username;
 	
 	$scope.getblogbyuser = function(){
-		blogservice.getblogbyid($scope.logindata._id).then(function(data){			
+		blogservice.getblogbyuserid($scope.logindata._id).then(function(data){			
 			$scope.blogs = data.data;
 		});
 	}
@@ -19,3 +19,17 @@ angular.module('blogApp').controller('blogCtrl',['$rootScope', '$scope', 'blogse
 	}
 	$scope.getblogbyuser();
 }]);
+
+angular.module('blogApp').controller('getblogCtrl',['$rootScope', '$scope', '$routeParams', 'blogservice', 'welcomeservice', function($rootScope, $scope, $routeParams, blogservice, welcomeservice){
+	$scope.blog = {};
+	$scope.logindata = welcomeservice.getObject();	
+	$rootScope.showwelcome = true;
+	$rootScope.username = $scope.logindata.username;
+	console.log($routeParams.blogid)
+	$scope.getblogbyid = function(id){
+		blogservice.getblogbyblogid(id).then(function(data){
+			$scope.blog = data.data;
+		});
+	};
+	$scope.getblogbyid($routeParams.blogid);
+}]);	
