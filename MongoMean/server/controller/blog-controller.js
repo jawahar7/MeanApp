@@ -2,30 +2,25 @@ var blogs = require('../model/blogs.js');
 var blogcontroller = {};
 
 blogcontroller.getblog = function(req, res){
-	blogs.find({}).populate('createdby').exec(function(err, result){
+	console.log(req.params.id);
+	blogs.find({createdby:{_id: req.params.id}}).sort({dtstamp: -1}).populate('createdby', 'username').exec(function(err, result){
 		if(err)
 			console.log(err);
 		else
 			console.log(result);
+		res.send(result)
 	});
 };
 
 blogcontroller.addblog = function(req, res){
-	//console.log(req.body);
-	// var blog = new blogs(req.body);
-	// blog.save(function(err, result){
-	// 	if(err)
-	// 		console.log(err);
-	// 	else
-	// 		console.log(result);
-	// });
-	blogs.find({}).populate('createdby').exec(function(err, result){
+	console.log(req.body);
+	var blog = new blogs(req.body);
+	blog.save(function(err, result){
 		if(err)
-			console.log(err);
+			res.send(err);
 		else
-			console.log(result);
-	});
-	res.send('insert');
+			res.send(result);
+	});	
 };
 
 module.exports = blogcontroller;

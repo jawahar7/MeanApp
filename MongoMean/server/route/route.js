@@ -16,7 +16,11 @@ module.exports = function(app, passport){
 		res.sendFile(rootpath + '/client/view/login/register.html');
 	});
 
-	app.get('/blog/getblog', function(req, res){
+	app.get('/home/dashboard', function(req, res){
+		res.sendFile(rootpath + '/client/view/home/dashboard.html');
+	});
+
+	app.get('/blogs/blogs', function(req, res){
 		res.sendFile(rootpath + '/client/view/blogs/blogs.html');
 	});
 
@@ -28,6 +32,6 @@ module.exports = function(app, passport){
 	app.get('/api/logout', usercontroller.logout);
 
 	//Blogs
-	app.get('/api/blogs', blogcontroller.getblog);
+	app.get('/api/blogs/:id', blogcontroller.getblog);
 	app.post('/api/blogs', blogcontroller.addblog);
 };

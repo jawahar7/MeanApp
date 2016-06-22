@@ -13,8 +13,15 @@ angular.module('blogApp').config(['$routeProvider', function($routeProvider){
 		templateUrl: 'login/register',
 		controller: 'registerCtrl'
 	});
+	$routeProvider.when('/Home', {
+		templateUrl: 'home/dashboard',
+		controller: 'homeCtrl',
+		resolve: {
+			checkLoggedIn: checkLoggedIn
+		}		
+	});
 	$routeProvider.when('/Blog', {
-		templateUrl: 'blog/getblog',
+		templateUrl: 'blogs/blogs',
 		controller: 'blogCtrl',
 		resolve: {
 			checkLoggedIn: checkLoggedIn

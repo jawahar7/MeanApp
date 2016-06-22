@@ -1,18 +1,42 @@
-<div class="row">
-   <div class="col-md-8">
-      <h2>
-         <a href="#">Blog Post Title</a>
-      </h2>
-      <p class="lead">
-         by <a href="index.php">Start Bootstrap</a>
-      </p>
-      <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-      <hr>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-      <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-      <hr>
-   </div>
+<div class="row">   
    <div class="col-md-4">
-      <button class="btn btn-default" ng-click="addblog()">Add Blog</button>
+      <div class="panel panel-default">
+         <div class="panel-heading">Your Profile</div>
+         <div class="panel-body">
+            {{logindata.username}}<br/>
+            {{logindata.email}}<br/><br/>            
+         </div>
+      </div>
+      <div class="panel panel-default">
+         <div class="panel-heading">Add Blogs</div>
+         <div class="panel-body">
+            <form role="form">
+               <div class="form-group">
+                  <label>Blog Title:</label>
+                  <input type="text" ng-model="blog.blogheading" class="form-control"/>
+               </div>
+               <div class="form-group">
+                  <label>Blog Content:</label>
+                  <textarea rows="4" cols="50" ng-model="blog.blogcontent" class="form-control"/>
+               </div>               
+               <button type="submit" class="btn btn-default" ng-click="addblog()">Add Blog</button> 
+            </form>                 
+         </div>
+      </div>      
+   </div>
+   <div class="col-md-8">
+      <div ng-repeat="items in blogs">
+         <h2>
+            <a href="#">{{items.blogheading}}</a>
+         </h2>
+         <p class="lead">
+            by <a href="index.php">{{items.createdby.username}}</a>
+         </p>
+         <p><span class="glyphicon glyphicon-time"></span> Posted on {{items.dtstamp | date:'medium'}}</p>
+         <hr>
+         <p>{{items.blogcontent}}</p>
+         <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+         <hr>
+      </div>
    </div>
 </div>

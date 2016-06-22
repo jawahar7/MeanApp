@@ -9,7 +9,7 @@ angular.module('blogApp').controller('loginCtrl', ['$rootScope', '$scope', '$loc
 		blogservice.userlogin($scope.loginobj).then(function(data){
 			if(data.data == "success"){
 				$scope.loginobj = {};				
-				$location.url('/Blog');
+				$location.url('/Home');
 			}
 			else{
 				$scope.loginobj.password = "";
