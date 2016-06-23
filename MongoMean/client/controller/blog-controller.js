@@ -21,15 +21,22 @@ angular.module('blogApp').controller('blogCtrl',['$rootScope', '$scope', 'blogse
 }]);
 
 angular.module('blogApp').controller('getblogCtrl',['$rootScope', '$scope', '$routeParams', 'blogservice', 'welcomeservice', function($rootScope, $scope, $routeParams, blogservice, welcomeservice){
-	$scope.blog = {};
+	$scope.blog = {};	
 	$scope.logindata = welcomeservice.getObject();	
 	$rootScope.showwelcome = true;
-	$rootScope.username = $scope.logindata.username;
-	console.log($routeParams.blogid)
+	$rootScope.username = $scope.logindata.username;	
 	$scope.getblogbyid = function(id){
 		blogservice.getblogbyblogid(id).then(function(data){
+			console.log(data.data)
 			$scope.blog = data.data;
 		});
 	};
+	$scope.addcomment = function(){
+		$scope.commentmodel = {comment: $scope.blogcomment, commentby: $scope.logindata._id, blogid: $routeParams.blogid};
+		blogservice.addcomment($scope.commentmodel).then(function(data){
+			$scope.blog = data.data;
+			$scope.blogcomment = "";
+		});
+	}
 	$scope.getblogbyid($routeParams.blogid);
 }]);	

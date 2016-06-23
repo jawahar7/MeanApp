@@ -19,6 +19,9 @@ angular.module('blogApp').factory('blogservice', ['$http', function($http){
     service.saveblog = function(obj){
         return $http.post('/api/blogs', obj);
     };
+    service.addcomment = function(obj){
+        return $http.post('/api/comments', obj);
+    };
 	return service;
 }]);
 

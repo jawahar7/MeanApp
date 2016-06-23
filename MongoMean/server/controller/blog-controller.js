@@ -1,8 +1,7 @@
 var blogs = require('../model/blogs.js');
 var blogcontroller = {};
 
-blogcontroller.getotherblog = function(req, res){
-	console.log(req.params.id)
+blogcontroller.getotherblog = function(req, res){	
 	blogs.find({createdby: { $ne: req.params.id}}).sort({dtstamp: -1}).populate('createdby', 'username').exec(function(err, result){
 		if(err){
 			console.log(err);
@@ -35,7 +34,7 @@ blogcontroller.addblog = function(req, res){
 };
 
 blogcontroller.getblogbyid = function(req, res){
-	blogs.findOne({_id: req.params.id}).populate('createdby', 'username').exec(function(err, result){
+	blogs.findOne({_id: req.params.id}).populate('createdby', 'username').populate({path: 'comments',populate: {path: 'commentby'}}).exec(function(err, result){
 		if(err){
 			console.log(err);
 			res.send(err)
